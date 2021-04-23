@@ -1,2 +1,2 @@
 # capsule
-[Arweave.org](https://arweave.org)
+Building on [Arweave](https://arweave.org)
