@@ -1,0 +1,16 @@
+.header {
+  border: solid 1px #000;
+  position: fixed;
+  width: 100%;
+  vertical-align: middle;
+
+  * {
+    display: inline-block;
+    margin: auto;
+  }
+
+  button {
+    float: right;
+    margin: 1%;
+  }
+}

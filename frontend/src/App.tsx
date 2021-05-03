@@ -1,12 +1,25 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
 import './App.scss';
-import Connect from './Connect'
+import Home from './Home'
+import Me from './Me'
 
-function App() {
+const App = () => {
   return (
-    <>
-     <Connect />  
-    </>
+    <Router>
+      <Switch>
+        <Route path="/me">
+          <Me />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 

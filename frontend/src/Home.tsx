@@ -1,9 +1,12 @@
 import Arweave from 'arweave';
 import React, {useState, useEffect} from 'react';
+import {useHistory} from 'react-router-dom';
 import useArConnect from 'use-arconnect';
 
 
-const Connect = () => {
+const Home = () => {
+  const history = useHistory();
+
   const [addr, setAddr] = useState('');
   const arConnect = useArConnect();
 
@@ -26,12 +29,20 @@ const Connect = () => {
     })();
   }, [arConnect]);
 
+  useEffect(() => {
+    if (addr === '') return;
+    // TODO: Pass address to Me component as state
+    history.push({
+      pathname: '/me',
+      state: { detail: addr }
+    }); 
+  }, [addr]);
+
   return (
     <div>
-      { addr !== '' && (<p>{addr}</p>)}
       <button onClick={connectWallet}>Connect to ArConnect</button>
     </div>
   );
 }
 
-export default Connect;
+export default Home;
