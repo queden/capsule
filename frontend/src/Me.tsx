@@ -1,23 +1,37 @@
 import React, {useState, useEffect} from 'react';
+import {
+  useHistory, 
+  useLocation,
+  Switch,
+  Route,
+  useRouteMatch
+} from 'react-router-dom';
+
 import './Me.scss'; 
-import {useHistory, useLocation} from 'react-router-dom';
+import Header from './Header';
+import CapsuleList from './CapsuleList';
 
 import useArConnect from 'use-arconnect';
 
 
 interface LocationState {
-  detail?: string,
+  activeAddr?: string,
 }
 
 const Me = () => {
   const history = useHistory();
-  const location = useLocation(); 
 
+  const location = useLocation(); 
   const state = location.state as LocationState;
 
-  const [addr, setAddr] = useState(state ? state.detail : '');
+  const { path, url } = useRouteMatch();
+
+  const [addr, setAddr] = useState(state ? state.activeAddr: '');
   const arConnect = useArConnect(); 
 
+  // TODO: If user logs out, then back arrows to /me, 
+  //       /me shows the capsule dashboard. Every other
+  //       way redirects to home page.
   useEffect(() => {
     if (!arConnect) return;
     (async () => {
@@ -43,10 +57,16 @@ const Me = () => {
   return (
     <>
       {(addr === '') 
-        ? <p>Loading...</p>
-        : <div className='header'>
-            <h1>Capsule</h1> 
-            <button onClick={async () => {await logOut();}} >Log out</button>
+        ? <p>Loading...</p> 
+        : <div>
+            <Header />
+            <div className='body'>
+              <Switch>
+                <Route exact path={path}>
+                  <CapsuleList /> 
+                </Route>
+              </Switch> 
+            </div>
           </div>
       }
     </>

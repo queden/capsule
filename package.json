@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "arweave": "^1.10.13",
+    "react-icons": "^4.2.0"
+  }
+}
