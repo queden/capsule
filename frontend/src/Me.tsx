@@ -10,6 +10,7 @@ import {
 import './Me.scss'; 
 import Header from './Header';
 import CapsuleList from './CapsuleList';
+import CapsuleForm from './CapsuleForm';
 
 import useArConnect from 'use-arconnect';
 
@@ -62,6 +63,9 @@ const Me = () => {
             <Header />
             <div className='body'>
               <Switch>
+                <Route path={`${path}/bury`}>
+                  <CapsuleForm />
+                </Route>
                 <Route exact path={path}>
                   <CapsuleList /> 
                 </Route>
