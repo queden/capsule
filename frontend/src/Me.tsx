@@ -52,28 +52,23 @@ const Me = () => {
 
   const logOut = async () => {
     await arConnect.disconnect();
-    history.push('/');
+    setAddr('');
   }
 
   return (
-    <>
-      {(addr === '') 
-        ? <p>Loading...</p> 
-        : <div>
-            <Header />
-            <div className='body'>
-              <Switch>
-                <Route path={`${path}/bury`}>
-                  <CapsuleForm />
-                </Route>
-                <Route exact path={path}>
-                  <CapsuleList /> 
-                </Route>
-              </Switch> 
-            </div>
-          </div>
-      }
-    </>
+    <div>
+      <Header logOut={logOut}/>
+        <div className='body'>
+          <Switch>
+            <Route exact path={path}>
+              <CapsuleList /> 
+            </Route>
+            <Route path={`${path}/bury`}>
+              <CapsuleForm />
+            </Route>
+          </Switch> 
+        </div>
+    </div>
   );
 }
 

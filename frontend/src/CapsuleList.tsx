@@ -39,6 +39,9 @@ const CapsuleList = () => {
   };
   
   const bury = () => {
+    // This works, but navigating
+    // directly to /me/bury renders
+    // the root route
     history.push('/me/bury'); 
   }
 

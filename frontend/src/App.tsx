@@ -12,13 +12,13 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/me">
-          <Me />
-        </Route>
         <Route exact path="/">
           <Home />
         </Route>
-      </Switch>
+        <Route path="/me">
+          <Me />
+        </Route>
+     </Switch>
     </Router>
   );
 }
